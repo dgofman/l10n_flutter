@@ -1,0 +1,14 @@
+builders:
+  l10n_builder:
+    import: "package:l10n_flutter/builder/builder.dart"
+    builder_factories: ["l10nBuilderFactory"]
+    build_extensions: {".dart:": [".json"]}
+    build_to: source
+
+targets:
+  $default:
+    builders:
+      'l10n_flutter|l10n_builder':
+        enabled: true
+        generate_for: # the directory specified
+          - lib/l10n_flutter/examples/models/l10n.dart

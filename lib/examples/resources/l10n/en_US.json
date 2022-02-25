@@ -1,0 +1,10 @@
+{
+	"apartment": "Apartment",
+	"car": "Car",
+	"coat": "Coat",
+	"elevator": "Elevator",
+	"highway": "Highway",
+	"mailbox": "Mailbox",
+	"gasoline": "Gasoline",
+	"truck": "Truck"
+}
