@@ -130,4 +130,4 @@ flutter pub run build_runner build --delete-conflicting-outputs
 
 # Examples
 
-https://github.com/dgofman/l10n_flutter/tree/master/lib/l10n_flutter/examples
+https://github.com/dgofman/l10n_flutter/tree/main/lib/examples
