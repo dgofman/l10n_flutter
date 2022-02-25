@@ -2,6 +2,12 @@
 
 This single framework will help you localize your Flutter application without the headache. You can reorganize and rename keys in the contact variable as well as in local files without breaking the application. Later, when you run the builder, you'll get auto-generated locale output files for all supported locales.
 
+<p align="center">
+<a href="https://raw.githubusercontent.com/dgofman/l10n_flutter/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
+
+<a href="https://pub.dev/packages/l10n_flutter/versions/1.0.0"><img src="https://img.shields.io/badge/pub-v1.0.0-blue" alt="l10n_flutter"></a>
+</p>
+
 
 ## Compile and test
 ```
