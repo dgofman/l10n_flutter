@@ -11,14 +11,14 @@ cd l10n_flutter
 
 flutter create --org l10n_flutter -i objc -a java -t app .
 
-flutter run -d chrome -t lib/l10n_flutter/examples/l10n_demo3_app.dart
+flutter run -d chrome -t lib/examples/l10n_demo3_app.dart
 
 ```
 
 ## Getting Started
 
 ```
-cd flutter create myapp
+flutter create myapp
 
 cd myapp
 ```
@@ -31,10 +31,7 @@ dependencies:
     sdk: flutter
     
   # Copy and paste
-  l10n_flutter:
-    git:
-      url: https://github.com/dgofman/l10n_flutter.git
-      ref: master
+  l10n_flutter: ^1.0.0
 ```
 
 - Create a locale model file - models/app_ln10.dart
