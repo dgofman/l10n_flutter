@@ -17,9 +17,12 @@ const _home = 'home', _about = 'about', _login = 'login';
 class AppRouteDemo extends StatefulWidget {
   static Map<String, Function> routes = {
     // Enable UniqueKey to change locale at runtime
-    _home: () => MaterialPageRoute(builder: (_) => HomePage(_home, key: UniqueKey())),
-    _about: () => MaterialPageRoute(builder: (_) => AboutPage(_about, key: UniqueKey())),
-    _login: () => MaterialPageRoute(builder: (_) => LoginPage(_login, key: UniqueKey()))
+    _home: () =>
+        MaterialPageRoute(builder: (_) => HomePage(_home, key: UniqueKey())),
+    _about: () =>
+        MaterialPageRoute(builder: (_) => AboutPage(_about, key: UniqueKey())),
+    _login: () =>
+        MaterialPageRoute(builder: (_) => LoginPage(_login, key: UniqueKey()))
   };
 
   const AppRouteDemo({Key? key}) : super(key: key);
@@ -33,7 +36,8 @@ class _AppRouteDemoState extends State<AppRouteDemo> {
 
   void changeLocale(L10nLocale? locale) async {
     await demo3Settings.selectLocale(locale);
-    await l10nSettings.selectLocale(locale, false); // Combining values from multiple settings
+    await l10nSettings.selectLocale(
+        locale, false); // Combining values from multiple settings
     setState(() {
       _locale = locale;
     });
@@ -49,8 +53,10 @@ class _AppRouteDemoState extends State<AppRouteDemo> {
   Widget build(BuildContext context) {
     return L10nMaterialApp(
         locale: _locale, // Dynamic locale
-        supportedLocales: demo3Settings.supportedLocales, // Provide a list of supported locales
-        onGenerateRoute: (RouteSettings settings) => AppRouteDemo.routes[settings.name]!(),
+        supportedLocales: demo3Settings
+            .supportedLocales, // Provide a list of supported locales
+        onGenerateRoute: (RouteSettings settings) =>
+            AppRouteDemo.routes[settings.name]!(),
         initialRoute: _home);
   }
 }
@@ -65,7 +71,8 @@ abstract class BasePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final stateWidget = context.findAncestorStateOfType<_AppRouteDemoState>()!;
     return FutureBuilder<L10nLocale?>(
-        future: Future<L10nLocale?>.delayed(const Duration(milliseconds: 500), () => stateWidget._locale),
+        future: Future<L10nLocale?>.delayed(
+            const Duration(milliseconds: 500), () => stateWidget._locale),
         builder: (context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return createScaffold(context, stateWidget, snapshot.data);
@@ -81,7 +88,8 @@ abstract class BasePage extends StatelessWidget {
         });
   }
 
-  Widget createScaffold(BuildContext context, _AppRouteDemoState stateWidget, L10nLocale currentLocale) {
+  Widget createScaffold(BuildContext context, _AppRouteDemoState stateWidget,
+      L10nLocale currentLocale) {
     final isLTR = currentLocale.isLTR;
     return Scaffold(
         appBar: AppBar(
@@ -90,7 +98,8 @@ abstract class BasePage extends StatelessWidget {
               Container(
                 height: kToolbarHeight,
                 alignment: isLTR ? Alignment.centerLeft : Alignment.centerRight,
-                child: const Text(L10nApp.title, style: TextStyle(color: Colors.white)),
+                child: const Text(L10nApp.title,
+                    style: TextStyle(color: Colors.white)),
               ),
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 0),
@@ -140,7 +149,9 @@ abstract class BasePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 10),
-                Center(child: Text(content.$, style: const TextStyle(fontSize: 20))),
+                Center(
+                    child:
+                        Text(content.$, style: const TextStyle(fontSize: 20))),
                 const SizedBox(height: 30),
                 createBody()
               ],
@@ -153,11 +164,13 @@ abstract class BasePage extends StatelessWidget {
 }
 
 class HomePage extends BasePage {
-  const HomePage(String route, {Key? key}) : super(route, L10nHome.content, key: key);
+  const HomePage(String route, {Key? key})
+      : super(route, L10nHome.content, key: key);
 }
 
 class AboutPage extends BasePage {
-  const AboutPage(String route, {Key? key}) : super(route, L10nAbout.content, key: key);
+  const AboutPage(String route, {Key? key})
+      : super(route, L10nAbout.content, key: key);
 
   @override
   Widget createBody() {
@@ -173,7 +186,8 @@ ${L10n.mailbox}
 }
 
 class LoginPage extends BasePage {
-  const LoginPage(String route, {Key? key}) : super(route, L10nLogin.content, key: key);
+  const LoginPage(String route, {Key? key})
+      : super(route, L10nLogin.content, key: key);
 
   @override
   Widget createBody() {

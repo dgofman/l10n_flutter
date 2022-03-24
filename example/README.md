@@ -1,8 +1,4 @@
-/*
- * Copyright 2022 Developed by David Gofman
- *
- * Dynamic locale change with L10nMaterialApp widget
- */
+```
 
 import 'package:flutter/cupertino.dart';
 import 'package:l10n_flutter/l10n_material_app.dart';
@@ -37,12 +33,21 @@ class _MaterialAppDemoState extends State<MaterialAppDemo> {
   Widget build(BuildContext context) {
     return L10nMaterialApp(
       locale: _locale, // Dynamic locale
-      supportedLocales:
-          l10nSettings.supportedLocales, // Provide a list of supported locales
-      home: WidgetHelper.createMaterialScaffold(
-          context, l10nSettings.indexOf(_locale), changeLocale),
+      supportedLocales: l10nSettings.supportedLocales, // Provide a list of supported locales
+      home: WidgetHelper.createMaterialScaffold(context, l10nSettings.indexOf(_locale), changeLocale),
     );
   }
 }
-
 void main() => runApp(const MaterialAppDemo());
+```
+
+# Examples
+
+https://github.com/dgofman/l10n_flutter/tree/main/lib/examples
+
+## See Also
+
+- https://pub.dev/packages/framework
+- https://pub.dev/packages/l10n_flutter
+- https://pub.dev/packages/form_components
+- https://pub.dev/packages/expansion_datagrid

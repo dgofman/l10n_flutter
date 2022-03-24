@@ -48,13 +48,16 @@ class L10nBuilder extends Builder {
             if (!_locales.containsKey(an)) {
               _locales[an] = {};
               final settings = m.computeConstantValue()!;
-              if (settings.getField('path') != null && !settings.getField('path')!.isNull) {
+              if (settings.getField('path') != null &&
+                  !settings.getField('path')!.isNull) {
                 _outputDir[an] = settings.getField('path')!.toStringValue()!;
               }
               for (var el in settings.getField('locales')!.toListValue()!) {
                 log.fine('Locale: $el');
-                if (el.getField('countryCode') != null && el.getField('countryCode')!.isNull) {
-                  _locales[an]?.add(el.getField('languageCode')!.toStringValue()!);
+                if (el.getField('countryCode') != null &&
+                    el.getField('countryCode')!.isNull) {
+                  _locales[an]
+                      ?.add(el.getField('languageCode')!.toStringValue()!);
                 } else {
                   _locales[an]?.add(
                       el.getField('languageCode')!.toStringValue()! +
@@ -67,10 +70,18 @@ class L10nBuilder extends Builder {
               final val = f.computeConstantValue()!;
               log.fine('${t.name}::${f.name} = $val');
               if (val.type.toString().startsWith(RegExp(r'L10nSet*'))) {
-                findKeyAndvalue('${t.name}::${f.name}', val, _usedKeys[an], _commonKeys[an], _langKeys[an]);
-              } else if (val.type.toString().startsWith(RegExp(r'Map<String*?, L10nSet*?>*'))) {
+                findKeyAndvalue('${t.name}::${f.name}', val, _usedKeys[an],
+                    _commonKeys[an], _langKeys[an]);
+              } else if (val.type
+                  .toString()
+                  .startsWith(RegExp(r'Map<String*?, L10nSet*?>*'))) {
                 val.toMapValue()!.forEach((key, val) {
-                  findKeyAndvalue('${t.name}::${f.name}::${key!.toStringValue()}', val, _usedKeys[an], _commonKeys[an], _langKeys[an]);
+                  findKeyAndvalue(
+                      '${t.name}::${f.name}::${key!.toStringValue()}',
+                      val,
+                      _usedKeys[an],
+                      _commonKeys[an],
+                      _langKeys[an]);
                 });
               }
             }
@@ -80,11 +91,7 @@ class L10nBuilder extends Builder {
     }
     _locales.forEach((an, locales) {
       //generate report for each L10nSettings
-      createReport(
-          _outputDir[an],
-          locales,
-          _commonKeys[an],
-          _langKeys[an]);
+      createReport(_outputDir[an], locales, _commonKeys[an], _langKeys[an]);
     });
   }
 
@@ -125,8 +132,8 @@ class L10nBuilder extends Builder {
           createJson(file, commonKeys, report);
         }
         if (pair.length == 2) {
-          file = File(
-              outputDir! + (pair.length == 1 ? pair[0] : code) + '.json');
+          file =
+              File(outputDir! + (pair.length == 1 ? pair[0] : code) + '.json');
           createJson(file, langKeys, report);
         }
       });
@@ -200,7 +207,7 @@ ${file[1].join('\n')}
     if (file.existsSync()) {
       try {
         content = jsonDecode(file.readAsStringSync());
-      // ignore: empty_catches
+        // ignore: empty_catches
       } catch (err) {}
     }
     List<String> lines = [];

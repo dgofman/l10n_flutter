@@ -1,5 +1,5 @@
 name: l10n_flutter
-description: Flutter Localization project.
+description: This single framework will help you localize your Flutter application without the headache.
 homepage: https://github.com/dgofman/l10n_flutter
 
 
@@ -13,7 +13,7 @@ homepage: https://github.com/dgofman/l10n_flutter
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.1
+version: 1.0.2
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -47,7 +47,8 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^1.0.4
+  flutter_lints: ^2.0.0
+  lints: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

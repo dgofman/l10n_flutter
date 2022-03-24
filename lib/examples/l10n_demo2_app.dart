@@ -32,14 +32,14 @@ class _CupertinoAppDemoState extends State<CupertinoAppDemo> {
     final theme = CupertinoTheme.of(context);
     return L10nCupertinoApp(
       locale: _locale, // Dynamic locale
-      supportedLocales: l10nSettings.supportedLocales, // Provide a list of supported locales
-      theme:  theme.copyWith(
-        primaryColor: CupertinoColors.white,
-        barBackgroundColor: CupertinoColors.systemTeal,
+      supportedLocales:
+          l10nSettings.supportedLocales, // Provide a list of supported locales
+      theme: theme.copyWith(
+          primaryColor: CupertinoColors.white,
+          barBackgroundColor: CupertinoColors.systemTeal,
           textTheme: theme.textTheme.copyWith(
-              navTitleTextStyle: theme.textTheme.navTitleTextStyle.copyWith(color: CupertinoColors.white)
-          )
-      ),
+              navTitleTextStyle: theme.textTheme.navTitleTextStyle
+                  .copyWith(color: CupertinoColors.white))),
       home: MyPage(this),
     );
   }
@@ -52,7 +52,8 @@ class MyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WidgetHelper.createCupertinoScaffold(context, l10nSettings.indexOf(parent._locale), parent.changeLocale);
+    return WidgetHelper.createCupertinoScaffold(
+        context, l10nSettings.indexOf(parent._locale), parent.changeLocale);
   }
 }
 

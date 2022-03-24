@@ -29,7 +29,7 @@ class L10nLoader {
   static final Map<Locale, Future<void> Function()> _loadingLocales = {};
 
   // ignore: prefer_function_declarations_over_variables
-  static Function getPath = (String languageCode, [String? countryCode])  {
+  static Function getPath = (String languageCode, [String? countryCode]) {
     if (countryCode != null) {
       return '$_resourceDir${languageCode}_$countryCode.json';
     }
@@ -37,7 +37,8 @@ class L10nLoader {
   };
 
   // ignore: prefer_function_declarations_over_variables
-  static Function bundleLoader = (Map<String, dynamic> map, Locale locale, String path) async {
+  static Function bundleLoader =
+      (Map<String, dynamic> map, Locale locale, String path) async {
     try {
       ByteData data = await rootBundle.load(path);
       map.addAll(jsonDecode(utf8.decode(data.buffer.asUint8List())));
@@ -47,7 +48,8 @@ class L10nLoader {
   };
 
   // ignore: prefer_function_declarations_over_variables
-  static final Function _changeLocale = (Locale locale, [List<Locale>? supportedLocales, bool clear = true]) async {
+  static final Function _changeLocale = (Locale locale,
+      [List<Locale>? supportedLocales, bool clear = true]) async {
     if (!clear || !_isLoaded(locale)) {
       await _loadLocale(locale, clear);
     }
@@ -60,8 +62,8 @@ class L10nLoader {
     return locale;
   };
 
-  static bool _isLoaded(Locale locale) => _loadedLocales[locale] != null
-          && _loadedLocales[locale]!.isNotEmpty;
+  static bool _isLoaded(Locale locale) =>
+      _loadedLocales[locale] != null && _loadedLocales[locale]!.isNotEmpty;
 
   static Future<void> _loadLocale(Locale locale, bool clear) async {
     if (!clear || !_loadedLocales.containsKey(locale)) {
@@ -72,7 +74,8 @@ class L10nLoader {
         Map<String, dynamic> map = (clear ? {} : _loadedLocales[locale] ?? {});
         await bundleLoader(map, locale, getPath(locale.languageCode));
         if (locale.countryCode != null && locale.countryCode != '') {
-          await bundleLoader(map, locale, getPath(locale.languageCode, locale.countryCode));
+          await bundleLoader(
+              map, locale, getPath(locale.languageCode, locale.countryCode));
         }
         if (map.isNotEmpty) {
           _loadedLocales[locale] = map;
@@ -89,7 +92,9 @@ class L10nSettings {
   final String? path;
   final List<L10nLocale> locales;
 
-  const L10nSettings({this.path, this.locales = const <L10nLocale>[L10nLocale('en', 'US', 'English')]});
+  const L10nSettings(
+      {this.path,
+      this.locales = const <L10nLocale>[L10nLocale('en', 'US', 'English')]});
 
   List<Locale> get supportedLocales {
     if (path != null) {
@@ -103,17 +108,21 @@ class L10nSettings {
     if (locale == null) {
       return -1;
     }
-    return supportedLocales.indexWhere((l) => l.languageCode == locale.languageCode && l.countryCode == locale.countryCode);
+    return supportedLocales.indexWhere((l) =>
+        l.languageCode == locale.languageCode &&
+        l.countryCode == locale.countryCode);
   }
 
-  Future<Locale> selectLocale(Locale? newLocale, [bool clear = true]) => L10nLoader._changeLocale(newLocale, supportedLocales, clear);
+  Future<Locale> selectLocale(Locale? newLocale, [bool clear = true]) =>
+      L10nLoader._changeLocale(newLocale, supportedLocales, clear);
 
   bool isLoaded(Locale locale) => L10nLoader._isLoaded(locale);
 
   LocalizationsDelegate<void> get delegate => L10nLoader.delegate;
 
   String get json {
-    return const JsonEncoder.withIndent('  ').convert(L10nLoader._dynamicLocaleDictionary);
+    return const JsonEncoder.withIndent('  ')
+        .convert(L10nLoader._dynamicLocaleDictionary);
   }
 
   void printJson([String? str]) {
@@ -167,9 +176,10 @@ class L10nLocale extends Locale {
   final String languageCode;
   @override
   final String? countryCode;
-  const L10nLocale(this.languageCode, [this.countryCode, this.label]) :
-        super(languageCode, countryCode);
+  const L10nLocale(this.languageCode, [this.countryCode, this.label])
+      : super(languageCode, countryCode);
 
-  bool get isLTR => GlobalWidgetsLocalizations(this).textDirection == TextDirection.ltr;
+  bool get isLTR =>
+      GlobalWidgetsLocalizations(this).textDirection == TextDirection.ltr;
   bool get isRTL => !isLTR;
 }

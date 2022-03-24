@@ -17,15 +17,17 @@ class MaterialDelegatesApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         locale: const Locale('he', 'IL'), // Set a default locale
-        supportedLocales: l10nSettings.supportedLocales, // Provide a list of supported locales
+        supportedLocales: l10nSettings
+            .supportedLocales, // Provide a list of supported locales
         localizationsDelegates: [
           l10nSettings.delegate, // Enable l10n_flutter delegate
           GlobalCupertinoLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate
         ],
-        builder: (BuildContext context, Widget? child) => WidgetHelper.createTestBody() // Rebuild widgets with new locale
-    );
+        builder: (BuildContext context, Widget? child) =>
+            WidgetHelper.createTestBody() // Rebuild widgets with new locale
+        );
   }
 }
 

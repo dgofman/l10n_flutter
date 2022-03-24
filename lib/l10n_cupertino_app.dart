@@ -19,34 +19,33 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'l10n_core.dart';
 
 class L10nCupertinoApp extends CupertinoApp {
-
-  L10nCupertinoApp({
-    Key? key,
-    Widget? home,
-    Locale? locale,
-    CupertinoThemeData? theme,
-    String? initialRoute,
-    TransitionBuilder? builder,
-    RouteFactory? onGenerateRoute,
-    Iterable<Locale>? supportedLocales,
-    bool debugShowCheckedModeBanner = false,
-    Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates
-  }) : assert(supportedLocales != null),
-
-    super(
-      key: key,
-      home: home,
-      builder: builder,
-      initialRoute: initialRoute,
-      onGenerateRoute: onGenerateRoute,
-      theme: theme,
-      locale: locale,
-      localizationsDelegates:  localizationsDelegates ?? [
-        L10nLoader.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
-      ],
-      supportedLocales: supportedLocales!,
-      debugShowCheckedModeBanner: debugShowCheckedModeBanner);
+  L10nCupertinoApp(
+      {Key? key,
+      Widget? home,
+      Locale? locale,
+      CupertinoThemeData? theme,
+      String? initialRoute,
+      TransitionBuilder? builder,
+      RouteFactory? onGenerateRoute,
+      Iterable<Locale>? supportedLocales,
+      bool debugShowCheckedModeBanner = false,
+      Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates})
+      : assert(supportedLocales != null),
+        super(
+            key: key,
+            home: home,
+            builder: builder,
+            initialRoute: initialRoute,
+            onGenerateRoute: onGenerateRoute,
+            theme: theme,
+            locale: locale,
+            localizationsDelegates: localizationsDelegates ??
+                [
+                  L10nLoader.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate
+                ],
+            supportedLocales: supportedLocales!,
+            debugShowCheckedModeBanner: debugShowCheckedModeBanner);
 }

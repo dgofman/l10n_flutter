@@ -17,9 +17,11 @@ class MaterialDemoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return L10nMaterialApp(
         locale: const Locale('he', 'IL'), // Set a default locale
-        supportedLocales: l10nSettings.supportedLocales, // Provide a list of supported locales
-        builder: (BuildContext context, Widget? child) => WidgetHelper.createTestBody() // Rebuild widgets with new locale
-    );
+        supportedLocales: l10nSettings
+            .supportedLocales, // Provide a list of supported locales
+        builder: (BuildContext context, Widget? child) =>
+            WidgetHelper.createTestBody() // Rebuild widgets with new locale
+        );
   }
 }
 

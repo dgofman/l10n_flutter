@@ -21,13 +21,17 @@ ${L10n.apartment}
 ${L10n.whatIsLP.sub([L10n.loremIpsum, L10n.pageMaker])}
       ''',
           style: const TextStyle(
-              color: Colors.black, fontWeight: FontWeight.normal, fontSize: 18, decoration: TextDecoration.none),
+              color: Colors.black,
+              fontWeight: FontWeight.normal,
+              fontSize: 18,
+              decoration: TextDecoration.none),
         ),
       ),
     );
   }
 
-  static Widget createMaterialScaffold(BuildContext context, int menuIndex, Function(Locale? locale) changeLocale) {
+  static Widget createMaterialScaffold(BuildContext context, int menuIndex,
+      Function(Locale? locale) changeLocale) {
     return Scaffold(
         appBar: AppBar(
           title: const Text(L10n.title),
@@ -63,7 +67,8 @@ ${L10n.whatIsLP.sub([L10n.loremIpsum, L10n.pageMaker])}
         body: createTestBody());
   }
 
-  static Widget createCupertinoScaffold(BuildContext context, int menuIndex, Function(Locale? locale) changeLocale) {
+  static Widget createCupertinoScaffold(BuildContext context, int menuIndex,
+      Function(Locale? locale) changeLocale) {
     return CupertinoPageScaffold(
         navigationBar: CupertinoNavigationBar(
           leading: Padding(
@@ -94,8 +99,11 @@ ${L10n.whatIsLP.sub([L10n.loremIpsum, L10n.pageMaker])}
                           ),
                           child: CupertinoPicker(
                             itemExtent: 30,
-                            scrollController: FixedExtentScrollController(initialItem: menuIndex),
-                            children: l10nSettings.locales.map((l) => getLocaleText(l)).toList(),
+                            scrollController: FixedExtentScrollController(
+                                initialItem: menuIndex),
+                            children: l10nSettings.locales
+                                .map((l) => getLocaleText(l))
+                                .toList(),
                             onSelectedItemChanged: (index) {
                               changeLocale(l10nSettings.locales[index]);
                             },
@@ -106,6 +114,7 @@ ${L10n.whatIsLP.sub([L10n.loremIpsum, L10n.pageMaker])}
         child: WidgetHelper.createTestBody());
   }
 
-  static Text getLocaleText(L10nLocale l) =>
-      Text(l.label != null ? l.label! : l.languageCode + (l.countryCode != null ? '_' + l.countryCode! : ''));
+  static Text getLocaleText(L10nLocale l) => Text(l.label != null
+      ? l.label!
+      : l.languageCode + (l.countryCode != null ? '_' + l.countryCode! : ''));
 }
