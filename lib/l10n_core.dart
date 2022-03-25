@@ -41,7 +41,8 @@ class L10nLoader {
       (Map<String, dynamic> map, Locale locale, String path) async {
     try {
       ByteData data = await rootBundle.load(path);
-      map.addAll(jsonDecode(utf8.decode(data.buffer.asUint8List())) as Map<String, dynamic>);
+      map.addAll(jsonDecode(utf8.decode(data.buffer.asUint8List()))
+          as Map<String, dynamic>);
     } catch (error) {
       logger.log('L10nLoader Error: $error');
     }
