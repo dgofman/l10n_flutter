@@ -34,7 +34,7 @@ class AppRouteDemo extends StatefulWidget {
 class _AppRouteDemoState extends State<AppRouteDemo> {
   L10nLocale? _locale;
 
-  void changeLocale(L10nLocale? locale) async {
+  Future<void> changeLocale(L10nLocale? locale) async {
     await demo3Settings.selectLocale(locale);
     await l10nSettings.selectLocale(
         locale, false); // Combining values from multiple settings
@@ -56,7 +56,7 @@ class _AppRouteDemoState extends State<AppRouteDemo> {
         supportedLocales: demo3Settings
             .supportedLocales, // Provide a list of supported locales
         onGenerateRoute: (RouteSettings settings) =>
-            AppRouteDemo.routes[settings.name]!(),
+            AppRouteDemo.routes[settings.name]!() as Route<dynamic>,
         initialRoute: _home);
   }
 }
@@ -75,7 +75,7 @@ abstract class BasePage extends StatelessWidget {
             const Duration(milliseconds: 500), () => stateWidget._locale),
         builder: (context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return createScaffold(context, stateWidget, snapshot.data);
+            return createScaffold(context, stateWidget, snapshot.data as L10nLocale);
           } else {
             return const Center(
               child: SizedBox(

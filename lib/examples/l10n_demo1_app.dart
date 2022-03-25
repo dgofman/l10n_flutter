@@ -20,7 +20,7 @@ class MaterialAppDemo extends StatefulWidget {
 class _MaterialAppDemoState extends State<MaterialAppDemo> {
   Locale? _locale = const Locale('he', 'IL');
 
-  void changeLocale(Locale? newLocale) async {
+  Future<void> changeLocale(Locale? newLocale) async {
     await l10nSettings.selectLocale(newLocale);
     setState(() {
       _locale = newLocale;

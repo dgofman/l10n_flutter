@@ -20,7 +20,7 @@ class CupertinoAppDemo extends StatefulWidget {
 class _CupertinoAppDemoState extends State<CupertinoAppDemo> {
   Locale? _locale = const Locale('he', 'IL');
 
-  void changeLocale(Locale? newLocale) async {
+  Future<void> changeLocale(Locale? newLocale) async {
     await l10nSettings.selectLocale(newLocale);
     setState(() {
       _locale = newLocale;

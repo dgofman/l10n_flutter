@@ -97,12 +97,12 @@ class L10nBuilder extends Builder {
 
   void findKeyAndvalue(varName, val, usedKeys, commonKeys, langKeys) {
     final key = val.getField('_key').toStringValue();
-    if (usedKeys.containsKey(key)) {
+    if (usedKeys.containsKey(key) == true) {
       throw Exception(
           'Duplicated key "$key" defined in "${usedKeys[key]}" and "$varName"');
     }
     usedKeys[key] = varName;
-    if (val.getField('common').toBoolValue()) {
+    if (val.getField('common').toBoolValue() == true) {
       commonKeys[key] = val.getField('_value').toStringValue();
     } else {
       langKeys[key] = val.getField('_value').toStringValue();
@@ -118,7 +118,7 @@ class L10nBuilder extends Builder {
     if (!File(outputDir).existsSync()) {
       Directory(outputDir).createSync(recursive: true);
     }
-    Map<String, dynamic> report = {"new_keys_file": [], "del_keys_file": []};
+    Map<String, dynamic> report = {'new_keys_file': [], 'del_keys_file': []};
     final common = {};
     locales.toList()
       ..sort()
@@ -206,7 +206,7 @@ ${file[1].join('\n')}
     List delKeys = [];
     if (file.existsSync()) {
       try {
-        content = jsonDecode(file.readAsStringSync());
+        content = jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
         // ignore: empty_catches
       } catch (err) {}
     }
