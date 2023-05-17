@@ -91,7 +91,7 @@ abstract class BasePage extends StatelessWidget {
 
   Widget createScaffold(BuildContext context, _AppRouteDemoState stateWidget,
       L10nLocale currentLocale) {
-    final isLTR = currentLocale.isLTR;
+    final isLTR = currentLocale.getTextDirection(context) == TextDirection.ltr;
     return Scaffold(
         appBar: AppBar(
           title: Stack(

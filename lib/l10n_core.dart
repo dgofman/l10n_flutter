@@ -20,8 +20,6 @@ import 'dart:developer' as logger;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter_localizations/flutter_localizations.dart';
-
 class L10nLoader {
   static String _resourceDir = 'l10n/';
   static final Map<String, dynamic> _dynamicLocaleDictionary = {};
@@ -180,7 +178,6 @@ class L10nLocale extends Locale {
   const L10nLocale(this.languageCode, [this.countryCode, this.label])
       : super(languageCode, countryCode);
 
-  bool get isLTR =>
-      GlobalWidgetsLocalizations(this).textDirection == TextDirection.ltr;
-  bool get isRTL => !isLTR;
+  TextDirection getTextDirection(BuildContext context) =>
+      WidgetsLocalizations.of(context).textDirection;
 }
